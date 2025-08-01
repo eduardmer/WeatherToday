@@ -1,0 +1,23 @@
+ syntax = "proto3";
+
+ option java_package = "com.weatherapp";
+ option java_multiple_files = true;
+
+ message WeatherPreferences {
+   string name = 1;
+   double temp = 2;
+   string icon_url = 3;
+   string description = 4;
+
+   int64 sunrise = 5;
+   int64 sunset = 6;
+
+   double wind_speed = 7;
+   int32 wind_degree = 8;
+
+   int32 humidity = 9;
+   int32 rain_fall = 10;
+
+   double feels_like = 11;
+   int32 pressure = 12;
+ }
