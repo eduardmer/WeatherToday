@@ -16,7 +16,7 @@ class GetWeatherUseCase @Inject constructor(
             when (result) {
                 is Resource.Loading -> Resource.Loading<Weather>()
                 is Resource.Error -> Resource.Error(result.error!!, null)
-               is Resource.Success<Weather> -> Resource.Success(result.data!!)
+                is Resource.Success<Weather> -> Resource.Success(result.data!!)
             }
         }
 

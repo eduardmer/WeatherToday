@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.weatherapp.R
 import com.weatherapp.common.Resource
-import com.weatherapp.domain.repository.WeatherRepository
+import com.weatherapp.domain.use_case.GetSavedWeatherUseCase
 import com.weatherapp.domain.use_case.GetWeatherUseCase
 import com.weatherapp.ui.utils.toCelsius
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -18,7 +18,7 @@ import javax.inject.Inject
 @HiltViewModel
 class WeatherViewModel @Inject constructor(
     private val getWeatherUseCase: GetWeatherUseCase,
-    private val repository: WeatherRepository
+    private val getSavedWeatherUseCase: GetSavedWeatherUseCase
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(WeatherState())
@@ -27,7 +27,7 @@ class WeatherViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            repository.weather.collectLatest { weather ->
+            getSavedWeatherUseCase().collectLatest { weather ->
                 weather?.let {
                     _state.emit(
                         WeatherState(
